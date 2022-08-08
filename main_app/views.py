@@ -35,7 +35,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('cats_index')
+      return redirect('finches_index')
     else:
       error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
@@ -67,7 +67,7 @@ def assoc_toy(request, finch_id, toy_id):
   @login_required
   def cats_index(request):
     Finch.objects.get(id=finch_id).toys.add(toy_id)
-    return redirect('cats_detail', cat_id=finch_id)
+    return redirect('finches_detail', cat_id=finch_id)
 
 class FinchCreate(CreateView, LoginRequiredMixin):
   fields = ['name', 'breed', 'description', 'age']
